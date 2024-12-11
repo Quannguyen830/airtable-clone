@@ -3,6 +3,7 @@
 import * as React from "react"
 import { ChevronDown, Plus } from 'lucide-react'
 import { Checkbox } from "../../../components/ui/checkbox"
+import { type ColumnDef, getCoreRowModel } from "@tanstack/table-core";
 import {
   Table,
   TableBody,
@@ -12,6 +13,7 @@ import {
   TableRow,
 } from "../../../components/ui/table"
 import { Button } from "../../../components/ui/button"
+import { useMemo } from "react"
 
 interface Task {
   id: string
@@ -49,6 +51,20 @@ export const DataTable = () => {
     }
     setTasks([...tasks, newTask])
   }
+
+  const tempColumns = [
+    "name",
+    "notes",
+    "assignee",
+    "status"
+  ]
+
+  // const columns = useMemo<ColumnDef<Task>[]>(() => [
+  //   tempColumns.map((column) => ({
+  //     accessorKey: column,
+  //     header: column
+  //   }))
+  // ], [])
 
   return (
     <div className="border rounded-lg">
